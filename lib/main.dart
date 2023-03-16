@@ -56,12 +56,28 @@ class _MyHomePageState extends State<MyHomePage> {
       List.generate(cashList.length, (_) => TextEditingController());
 
   void _calculateCash() {
-    setState(() {});
+    setState(() {
+      _counter = 0;
+
+      var mapCash = <int, int>{};
+      for (var i = 0; i < cashList.length; i++) {
+        var userCash = _controllers[i].text.trim();
+        if (userCash.isNotEmpty) {
+          mapCash.addAll({cashList[i]: int.parse(userCash)});
+        }
+      }
+      _counter = _cash.calculateCant(mapCash);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _calculateCash();
+          },
+          child: const Icon(Icons.calculate)),
       appBar: AppBar(
         elevation: 0,
         title: null,
@@ -99,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ?.copyWith(color: Colors.white),
                     ),
                     Text(
-                      '\$$_counter 98457389457',
+                      '\$$_counter',
                       style: Theme.of(context)
                           .textTheme
                           .headlineMedium
@@ -128,6 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           Expanded(
                             flex: 6,
                             child: TextField(
+                                keyboardType: TextInputType.number,
                                 decoration:
                                     const InputDecoration(hintText: "\$0"),
                                 controller:
