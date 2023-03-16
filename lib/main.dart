@@ -115,18 +115,17 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: cashList
                     .map<Widget>(
                       (item) => Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Expanded(
                               flex: 5,
-                              child: Text(item.toString())),
+                              child: Align(
+                                  alignment: AlignmentDirectional.center,
+                                  child: Text(item.toString()))),
                           Expanded(
-                            flex: 5,
+                            flex: 6,
                             child: TextField(
                                 decoration:
                                     const InputDecoration(hintText: "\$0"),
