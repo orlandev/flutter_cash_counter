@@ -55,6 +55,15 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<TextEditingController> _controllers =
       List.generate(cashList.length, (_) => TextEditingController());
 
+  void _cleanCalculation() {
+    setState(() {
+      for (var i = 0; i < _controllers.length; i++) {
+        _controllers[i].text = '\$0';
+      }
+      _counter = 0;
+    });
+  }
+
   void _calculateCash() {
     setState(() {
       _counter = 0;
@@ -87,9 +96,9 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.share, color: Colors.white),
           )
         ],
-        leading: const IconButton(
-            onPressed: null,
-            icon: Icon(
+        leading: IconButton(
+            onPressed: () => _cleanCalculation(),
+            icon: const Icon(
               Icons.monetization_on,
               color: Colors.white,
             )),
