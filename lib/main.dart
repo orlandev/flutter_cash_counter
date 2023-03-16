@@ -52,6 +52,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   final Cash _cash = Cash();
 
+  final TextEditingController _controller = TextEditingController();
+
   void _calculateCash() {
     setState(() {});
   }
@@ -90,11 +92,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     Text(
                       'Cuenta actual',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.white),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium
+                          ?.copyWith(color: Colors.white),
                     ),
                     Text(
                       '\$$_counter 98457389457',
-                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.white),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineMedium
+                          ?.copyWith(color: Colors.white),
                     ),
                   ],
                 ),
@@ -103,15 +111,34 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Expanded(
             flex: 5,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
-            children: const [
-              Text("data"),
-              Text("data"),
-              Text("data"),
-              Text("data"),
-              Text("data"),
-            ],
-          ))
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: cashList
+                    .map<Widget>(
+                      (item) => Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                              flex: 5,
+                              child: Text(item.toString())),
+                          Expanded(
+                            flex: 5,
+                            child: TextField(
+                                decoration:
+                                    const InputDecoration(hintText: "\$0"),
+                                controller: _controller),
+                          ),
+                        ],
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
+          ),
         ],
       ),
     );
