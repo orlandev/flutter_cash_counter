@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _cleanCalculation() {
     setState(() {
       for (var i = 0; i < _controllers.length; i++) {
-        _controllers[i].text = '\$0';
+        _controllers[i].text = '';
       }
       _counter = 0;
     });
