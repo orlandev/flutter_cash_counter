@@ -153,11 +153,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           Expanded(
                             flex: 6,
                             child: TextField(
-                                keyboardType: TextInputType.number,
-                                decoration:
-                                    const InputDecoration(hintText: "\$0"),
-                                controller:
-                                    _controllers[cashList.indexOf(item)]),
+                              keyboardType: TextInputType.number,
+                              decoration:
+                                  const InputDecoration(hintText: "\$0"),
+                              controller: _controllers[cashList.indexOf(item)],
+                            ),
                           ),
                         ],
                       ),
