@@ -52,7 +52,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   final Cash _cash = Cash();
 
-  final TextEditingController _controller = TextEditingController();
+  final List<TextEditingController> _controllers =
+      List.generate(cashList.length, (_) => TextEditingController());
 
   void _calculateCash() {
     setState(() {});
@@ -129,7 +130,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: TextField(
                                 decoration:
                                     const InputDecoration(hintText: "\$0"),
-                                controller: _controller),
+                                controller:
+                                    _controllers[cashList.indexOf(item)]),
                           ),
                         ],
                       ),
