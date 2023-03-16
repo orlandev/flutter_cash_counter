@@ -139,30 +139,32 @@ class _MyHomePageState extends State<MyHomePage> {
             flex: 5,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: cashList
-                    .map<Widget>(
-                      (item) => Row(
-                        children: [
-                          Expanded(
-                              flex: 5,
-                              child: Align(
-                                  alignment: AlignmentDirectional.center,
-                                  child: Text(item.toString()))),
-                          Expanded(
-                            flex: 6,
-                            child: TextField(
-                              keyboardType: TextInputType.number,
-                              decoration:
-                                  const InputDecoration(hintText: "\$0"),
-                              controller: _controllers[cashList.indexOf(item)],
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: cashList
+                      .map<Widget>(
+                        (item) => Row(
+                          children: [
+                            Expanded(
+                                flex: 5,
+                                child: Align(
+                                    alignment: AlignmentDirectional.center,
+                                    child: Text(item.toString()))),
+                            Expanded(
+                              flex: 6,
+                              child: TextField(
+                                keyboardType: TextInputType.number,
+                                decoration:
+                                    const InputDecoration(hintText: "\$0"),
+                                controller: _controllers[cashList.indexOf(item)],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    )
-                    .toList(),
+                          ],
+                        ),
+                      )
+                      .toList(),
+                ),
               ),
             ),
           ),
