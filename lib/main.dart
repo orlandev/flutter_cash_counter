@@ -64,18 +64,43 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _processTextToShareCount(BuildContext context) {
+    DateTime now = DateTime.now();
+    DateTime date = DateTime(now.year, now.month, now.day);
+
+    var mapOfValues = _getMapCash();
+    var shareStr = "Cuenta: $date";
+    mapOfValues.forEach((key, value) {
+      shareStr += "$key -----  $value";
+    });
+
+    shareStr += "\n\n     ";
+    shareStr += "\n\n------------------";
+    shareStr += "\nTOTAL -------------- $_counter";
+
+    print(shareStr);
+
+    //final box = context.findRenderObject() as RenderBox?;
+
+    /*  await Share.share(shareStr,
+        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);*/
+  }
+
+  Map<int, int> _getMapCash() {
+    var mapCash = <int, int>{};
+    for (var i = 0; i < cashList.length; i++) {
+      var userCash = _controllers[i].text.trim();
+      if (userCash.isNotEmpty) {
+        mapCash.addAll({cashList[i]: int.parse(userCash)});
+      }
+    }
+    return mapCash;
+  }
+
   void _calculateCash() {
     setState(() {
       _counter = 0;
-
-      var mapCash = <int, int>{};
-      for (var i = 0; i < cashList.length; i++) {
-        var userCash = _controllers[i].text.trim();
-        if (userCash.isNotEmpty) {
-          mapCash.addAll({cashList[i]: int.parse(userCash)});
-        }
-      }
-      _counter = _cash.calculateCant(mapCash);
+      _counter = _cash.calculateCant(_getMapCash());
     });
   }
 
@@ -85,12 +110,11 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: const Padding(
         padding: EdgeInsets.all(8.0),
         child: Center(
-            heightFactor: 2, child: Text(
-            "Created by Orlando N. Rodriguez",
-          style: TextStyle(
-            color: Colors.blueAccent
-          ),
-        )),
+            heightFactor: 2,
+            child: Text(
+              "Created by Orlando N. Rodriguez",
+              style: TextStyle(color: Colors.blueAccent),
+            )),
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -100,10 +124,12 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         elevation: 0,
         title: null,
-        actions: const [
+        actions: [
           IconButton(
-            onPressed: null,
-            icon: Icon(Icons.share, color: Colors.white),
+            onPressed: () {
+              _processTextToShareCount(context);
+            },
+            icon: const Icon(Icons.share, color: Colors.white),
           )
         ],
         leading: IconButton(
