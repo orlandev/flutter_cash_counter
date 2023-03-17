@@ -82,6 +82,16 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Center(
+            heightFactor: 2, child: Text(
+            "Created by Orlando N. Rodriguez",
+          style: TextStyle(
+            color: Colors.blueAccent
+          ),
+        )),
+      ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             _calculateCash();
@@ -157,7 +167,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 keyboardType: TextInputType.number,
                                 decoration:
                                     const InputDecoration(hintText: "\$0"),
-                                controller: _controllers[cashList.indexOf(item)],
+                                controller:
+                                    _controllers[cashList.indexOf(item)],
                               ),
                             ),
                           ],
