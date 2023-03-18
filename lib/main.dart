@@ -1,6 +1,5 @@
 import 'package:cash_counter/data/cash.dart';
 import 'package:flutter/material.dart';
-import 'package:share_plus/share_plus.dart';
 
 void main() {
   runApp(const MyApp());
@@ -60,19 +59,22 @@ class _MyHomePageState extends State<MyHomePage> {
     DateTime date = DateTime(now.year, now.month, now.day);
 
     var mapOfValues = _getMapCash();
-    var shareStr = "Cuenta: $date";
+    var shareStr = "Cuenta: $date\n";
+
+    shareStr += "\n";
+
     mapOfValues.forEach((key, value) {
       shareStr += "$key -----  $value";
+      shareStr += "\n";
     });
 
-    shareStr += "\n\n     ";
-    shareStr += "\n\n------------------";
-    shareStr += "\nTOTAL -------------- $_counter";
+    shareStr += "\n\n---------------------------";
+    shareStr += "\nTOTAL ------- \$$_counter";
 
-    final box = context.findRenderObject() as RenderBox?;
+   // final box = context.findRenderObject() as RenderBox?;
 
-    await Share.share(shareStr,
-        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+  /*  await Share.share(shareStr,
+        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);*/
   }
 
   Map<int, int> _getMapCash() {
