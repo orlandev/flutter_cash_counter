@@ -1,5 +1,6 @@
 import 'package:cash_counter/data/cash.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,26 +13,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: '',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: ''),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
+
   final String title;
 
   @override
@@ -54,12 +47,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _processTextToShareCount(BuildContext context) async   {
+  void _processTextToShareCount(BuildContext context) async {
     DateTime now = DateTime.now();
     DateTime date = DateTime(now.year, now.month, now.day);
 
     var mapOfValues = _getMapCash();
-    var shareStr = "Cuenta: $date\n";
+    var shareStr = "Fecha: $date\n";
 
     shareStr += "\n";
 
@@ -71,10 +64,11 @@ class _MyHomePageState extends State<MyHomePage> {
     shareStr += "\n\n---------------------------";
     shareStr += "\nTOTAL ------- \$$_counter";
 
-   // final box = context.findRenderObject() as RenderBox?;
+    //final box = context.findRenderObject() as RenderBox?;
 
-  /*  await Share.share(shareStr,
-        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);*/
+    await Share.share(shareStr,
+      //  sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size
+        );
   }
 
   Map<int, int> _getMapCash() {
@@ -118,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: null,
         actions: [
           IconButton(
-            onPressed:  () async => _processTextToShareCount(context),
+            onPressed: () async => _processTextToShareCount(context),
             icon: const Icon(Icons.share, color: Colors.white),
           )
         ],
