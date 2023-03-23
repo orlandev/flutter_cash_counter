@@ -180,7 +180,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 keyboardType: TextInputType.number,
                                 decoration:
                                     const InputDecoration(hintText: "\$0"),
-                                controller: _controllers[cashList.indexOf(item)],
+                                controller:
+                                    _controllers[cashList.indexOf(item)],
                                 onChanged: (newValue) {
                                   _controllers[cashList.indexOf(item)].text =
                                       newValue;
