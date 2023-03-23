@@ -66,9 +66,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
     //final box = context.findRenderObject() as RenderBox?;
 
-    await Share.share(shareStr,
+    await Share.share(
+      shareStr,
       //  sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size
-        );
+    );
   }
 
   Map<int, int> _getMapCash() {
@@ -104,9 +105,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            _calculateCash();
+            _cleanCalculation();
           },
-          child: const Icon(Icons.calculate)),
+          child: const Icon(Icons.delete)),
       appBar: AppBar(
         elevation: 0,
         title: null,
@@ -170,15 +171,21 @@ class _MyHomePageState extends State<MyHomePage> {
                                 flex: 5,
                                 child: Align(
                                     alignment: AlignmentDirectional.center,
-                                    child: Text(item.toString()))),
+                                    child: Text(
+                                      item.toString(),
+                                    ))),
                             Expanded(
                               flex: 6,
                               child: TextField(
                                 keyboardType: TextInputType.number,
                                 decoration:
                                     const InputDecoration(hintText: "\$0"),
-                                controller:
-                                    _controllers[cashList.indexOf(item)],
+                                controller: _controllers[cashList.indexOf(item)],
+                                onChanged: (newValue) {
+                                  _controllers[cashList.indexOf(item)].text =
+                                      newValue;
+                                  _calculateCash();
+                                },
                               ),
                             ),
                           ],
