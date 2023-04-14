@@ -13,7 +13,7 @@ const cashList = [
 
 class Cash {
 
-  int calculateCant(Map<int, int> data) {
+  static int calculateCant(Map<int, int> data) {
     var cashResult = 0;
     data.forEach((key, value) {
       cashResult += key * value;
