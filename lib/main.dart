@@ -10,6 +10,7 @@ void main() {
       title: "CashCounter",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      themeMode: ThemeMode.system,
       theme: ThemeData(
           colorSchemeSeed: Colors.blue,
           useMaterial3: true,

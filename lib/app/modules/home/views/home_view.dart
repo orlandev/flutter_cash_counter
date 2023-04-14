@@ -45,33 +45,30 @@ class HomeView extends GetView<HomeController> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Expanded(
-              flex: 1,
-              child: Container(
-                width: double.infinity,
-                height: 150,
-                decoration:
-                    BoxDecoration(color: Theme.of(context).primaryColor),
-                child: Align(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        'Cuenta actual',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium
-                            ?.copyWith(color: Colors.white),
-                      ),
-                      Text(
-                        '\$${controller.money}',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineMedium
-                            ?.copyWith(color: Colors.white),
-                      ),
-                    ],
-                  ),
+            Container(
+              width: double.infinity,
+              height: Get.height * 0.20,
+              decoration:
+                  BoxDecoration(color: Theme.of(context).primaryColor),
+              child: Align(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      'Cuenta actual',
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium
+                          ?.copyWith(color: Colors.white),
+                    ),
+                    Text(
+                      '\$${controller.money}',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineMedium
+                          ?.copyWith(color: Colors.white),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -101,7 +98,8 @@ class HomeView extends GetView<HomeController> {
                                   keyboardType: TextInputType.number,
                                   decoration:
                                       const InputDecoration(hintText: "\$0"),
-                                  controller: controller.textFieldControllers[cashList.indexOf(item)],
+                                  controller: controller.textFieldControllers[
+                                      cashList.indexOf(item)],
                                   onChanged: (newValue) {
                                     controller
                                         .textFieldControllers[
